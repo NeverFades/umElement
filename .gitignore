@@ -1,0 +1,7 @@
+.idea
+/#runtime
+/vendor
+/rd
+*.log
+composer.lock
+/src.zip

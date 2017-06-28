@@ -1,0 +1,33 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+</head>
+<body>
+<script type="text/javascript" src="$.js"></script>
+<script>
+    require(['!this.js'], $$.load)
+</script>
+</body>
+</html>
+<template data-name="this.htm">
+    <div>
+        <el-button @click="visible = true">hello</el-button>
+        <el-dialog v-model="visible" title="Hello world">
+            <p>this is simple page</p>
+        </el-dialog>
+    </div>
+</template>
+<script data-name="this.js">
+    require('../1s/js/common');
+    module.exports = {
+        template: require('!this.htm'),
+        loaded: function () {
+            $$.m = {
+                visible: false
+            };
+        }
+    };
+
+
+</script>
