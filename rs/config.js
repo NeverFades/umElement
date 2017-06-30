@@ -17,7 +17,7 @@ module.exports = [{
     relative: false,
     minimum: false,
     hash: false,
-    domain: false,
+    domain: 'http://umele.hq.umsoft.cc',
     loader_libs: {
         html: ['/1st/web/web.js']
     },

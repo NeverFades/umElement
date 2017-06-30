@@ -1,0 +1,215 @@
+body {
+  min-width: 1200px;
+  background: #e7e8eb;
+}
+
+.head_box {
+  position: relative;
+  background-color: #fff;
+  border-bottom: 1px solid #d9dadc;
+  .inner {
+    height: 60px;
+  }
+  .inner.wrp {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .inner:after {
+    content: "\200B";
+    display: block;
+    height: 0;
+    clear: both;
+  }
+  .logo {
+    float: left;
+    padding-top: 10px;
+    font-size: 24px;
+    a {
+      display: block;
+      width: 250px;
+      height: 40px;
+      overflow: hidden;
+      text-decoration: none;
+    }
+    a:before {
+      display: inline-block;
+      content: url(../../../asset/bg_logo.png);
+    }
+  }
+  .account {
+    float: right;
+    padding-top: 10px;
+  }
+  .account {
+    font-size: 0;
+  }
+  .account {
+    .account_meta {
+      display: inline-block;
+      vertical-align: bottom;
+    }
+    .account_meta {
+      font-size: 14px;
+    }
+    .account_info {
+      position: relative;
+      min-width: 120px;
+      .nickname {
+        display: inline-block;
+        font-weight: 400;
+        font-style: normal;
+        margin-top: 19px;
+      }
+      .type_wrp {
+        position: absolute;
+        left: 0;
+        color: #333;
+        top: -1px;
+        font-size: 13px;
+      }
+      .avatar {
+        position: absolute;
+        top: 0;
+        left: -50px;
+        width: 38px;
+        height: 38px;
+        background-color: #f0f0f0;
+        border-radius: 100%;
+      }
+    }
+    .account_meta_primary a {
+      color: #222;
+      line-height: 16px;
+    }
+    a.account_inbox_switch {
+      margin-left: 5px;
+      display: inline-block;
+      padding: .13em .4em;
+      min-width: 8px;
+      border-radius: 18px;
+      background-color: #FF4949;
+      color: #FFFFFF !important;
+      line-height: 1.3;
+      text-align: center;
+      font-size: 12px;
+    }
+    .account_logout a {
+      display: inline-block;
+      margin-left: 10px;
+      line-height: 16px;
+      padding-left: 10px;
+      border-left: 1px solid #e7e7eb;
+    }
+  }
+  .main-nav {
+    float: left;
+    overflow: hidden;
+  }
+}
+
+.body {
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 36px 0 88px;
+}
+
+.cell_layout {
+  border: 1px solid #d9dadc;
+  background-color: #fff;
+  .col_side, .col_main {
+    display: table-cell;
+    vertical-align: top;
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+  .col_side {
+    min-height: 1px;
+    background-color: #fff;
+    border-right: 1px solid #e7e7eb;
+    width: 17.5%;
+    max-width: 208px;
+  }
+  .col_main {
+    width: 2000px;
+    height: 700px;
+    .main_hd {
+      line-height: 40px;
+    }
+    .container_hd h2, .main_hd h2 {
+      font-weight: 400;
+      font-style: normal;
+    }
+    .container_hd h2, .main_hd h2 {
+      font-size: 16px;
+      padding: 0 30px;
+      line-height: 75px;
+    }
+    .main_hd h2 {
+      border-bottom: 1px solid #e7e7eb;
+    }
+    .container_bd, .main_bd {
+      padding-bottom: 30px;
+    }
+  }
+}
+
+.main_bd {
+  .table_wrp {
+    margin-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .float_layout {
+    padding: 30px;
+  }
+  .global_info {
+    float: left;
+  }
+  .global_extra {
+    text-align: right;
+  }
+  .el-form-item__label {
+    text-align: left;
+  }
+}
+
+.form_bd {
+  padding: 0 62px;
+  .submit_bar {
+    padding-bottom: 50px;
+    padding-top: 20px;
+  }
+}
+
+.panel-content {
+  width: 100%;
+  padding: 10px 17px;
+  display: inline-block;
+  background: #fff;
+  border: 1px solid #E6E9ED;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+  column-break-inside: avoid;
+  opacity: 1;
+  transition: all .2s ease;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.panel-title {
+  border-bottom: 2px solid #E6E9ED;
+  padding: 1px 5px 6px;
+  margin-bottom: 30px;
+  .panel-title_hd {
+    display: inline-block;
+    float: left;
+    line-height: 30px;
+    color: #20a0ff;
+    font-size: 14px
+  }
+}
+.search_bar+.el-button{
+  margin-left: 10px;
+}

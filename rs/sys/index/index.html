@@ -4,22 +4,21 @@
     <title>hello</title>
 </head>
 <body>
-<script type="text/javascript" src="$.js"></script>
 <script>
-    require(['!this.js'], $$.load)
+    require(['!this.js'], $$.load);
 </script>
 </body>
 </html>
-<template data-name="this.htm">
+<script data-name="this.htm" type="text/html">
     <div>
         <el-button @click="visible = true">hello</el-button>
         <el-dialog v-model="visible" title="Hello world">
             <p>this is simple page</p>
         </el-dialog>
     </div>
-</template>
+</script>
 <script data-name="this.js">
-    require('../1s/js/common');
+    require('$');
     module.exports = {
         template: require('!this.htm'),
         loaded: function () {
@@ -28,6 +27,4 @@
             };
         }
     };
-
-
 </script>

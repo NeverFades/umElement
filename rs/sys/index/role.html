@@ -1,0 +1,404 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>角色管理</title>
+</head>
+<body>
+<script>
+    require(['!this.js'], $$.load)
+</script>
+</body>
+</html>
+<script data-name="this.htm" type="text/html">
+    <div>
+        <div class="head_box">
+            <div class="inner wrp">
+                <h1 class="logo"><a href="/" title="微信公众平台"></a></h1>
+                <div class="main-nav">
+                    <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal">
+                        <el-menu-item index="1">首页</el-menu-item>
+                        <el-menu-item index="3">社区</el-menu-item>
+                        <el-menu-item index="2"><a href="#">系统</a></el-menu-item>
+                    </el-menu>
+                </div>
+                <div class="account">
+                    <div class="account_meta account_info account_meta_primary">
+                        <div class="nickname">
+                            <a>李靖</a>
+                            <div id="accountArea" class="account_meta account_inbox account_meta_primary">
+                                <a href="" class="account_inbox_switch">2条未读</a>
+                            </div>
+                            <div class="account_meta account_logout account_meta_primary">
+                                <a id="logout" href="">退出</a>
+                            </div>
+                        </div>
+                        <span class="type_wrp">超级管理员</span>
+                        <a>
+                            <img src="https://avatars2.githubusercontent.com/u/16190010?v=3&s=460" class="avatar">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="cell_layout">
+                <div class="col_side">
+                    <el-menu mode="vertical" :default-active="menu" class="el-menu-vertical-demo">
+                        <el-menu-item-group v-for="list in data" @click.native="item" :title="list.title">
+                            <el-menu-item :index="value.id" v-for="(value,index) in list.child" @click="go(value.uri)">
+                                {{value.title}}
+                            </el-menu-item>
+                        </el-menu-item-group>
+                    </el-menu>
+                </div>
+                <div class="col_main">
+                    <div class="main_hd"><h2>头部提示</h2></div>
+                    <div class="main_bd">
+                        <div class="float_layout">
+                            <div class="global_extra">
+                                <el-button type="primary" icon="edit">新增</el-button>
+                                <el-button icon="delete" :disabled="true">删除</el-button>
+                            </div>
+                        </div>
+                        <div class="table_wrp">
+                            <el-table :data="tableData" style="width: 100%">
+                                <el-table-column prop="id" label="ID" width="150"></el-table-column>
+                                <el-table-column prop="name" label="角色名" width="200"></el-table-column>
+                                <el-table-column prop="desc" label="描述" width="388"></el-table-column>
+                                <el-table-column label="操作" width="190">
+                                    <template scope="scope">
+                                        <el-button @click="dialogFormVisible = true" type="text" size="small"
+                                                   icon="edit">修改
+                                        </el-button>
+                                        <el-button type="text" size="small" @click="handleClick('编辑')" icon="delete">
+                                            删除
+                                        </el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                        </div>
+                        <el-dialog title="角色编辑" :visible.sync="dialogFormVisible">
+                            <el-form :model="form" label-width="80px">
+                                <el-form-item label="角色名称">
+                                    <el-col :span="8">
+                                        <el-input v-model="form.name"></el-input>
+                                    </el-col>
+                                </el-form-item>
+                                <el-form-item label="描述">
+                                    <el-col :span="12">
+                                        <el-input v-model="form.name"></el-input>
+                                    </el-col>
+                                </el-form-item>
+                                <el-form-item label="角色授权">
+                                    <el-tree :data="data2" show-checkbox node-key="id" :default-expanded-keys="[2, 3]"
+                                             :default-checked-keys="[5]" :props="defaultProps" style="border: none">
+                                    </el-tree>
+                                    <template v-for="list in data">
+                                        <div style="margin: 15px 0;"></div>
+                                        <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll"
+                                                     @change="handleCheckAllChange">{{list.title}}
+                                        </el-checkbox>
+
+                                        <el-checkbox-group v-model="checkedCities" @change="handleCheckedCitiesChange">
+                                            <el-checkbox v-for="value in list.child" :label="value.id" :key="value.id">
+                                                {{value.title}}
+                                            </el-checkbox>
+                                        </el-checkbox-group>
+                                    </template>
+                                </el-form-item>
+                            </el-form>
+                            <div slot="footer" class="dialog-footer">
+                                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                                <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+                            </div>
+                        </el-dialog>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script data-name="this.js">
+    require('$');
+    module.exports = {
+        template: require('!this.htm'),
+        loaded: function () {
+            $$.m = {
+                activeIndex2: '2',
+                data: [
+                    {
+                        "id": 2,
+                        "pid": 1,
+                        "title": "布局",
+                        "description": "",
+                        "sort": 0,
+                        "uri": "/sys/home/index",
+                        "child": [
+                            {
+                                "id": 3,
+                                "pid": 2,
+                                "title": "表格1",
+                                "description": "",
+                                "sort": 0,
+                                "uri": "layout"
+                            },
+                            {
+                                "id": 4,
+                                "pid": 2,
+                                "title": "表格2",
+                                "description": "",
+                                "sort": 0,
+                                "uri": "table2"
+                            },
+                            {
+                                "id": 5,
+                                "pid": 2,
+                                "title": "表格3",
+                                "description": "",
+                                "sort": 0,
+                                "uri": "table3"
+                            },
+                            {
+                                "id": 6,
+                                "pid": 2,
+                                "title": "表格4",
+                                "description": "",
+                                "sort": 0,
+                                "uri": "table4"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 11,
+                        "pid": 10,
+                        "title": "组件",
+                        "description": "",
+                        "sort": 0,
+                        "uri": "",
+                        "child": [
+                            {
+                                "id": 12,
+                                "pid": 11,
+                                "title": "表单",
+                                "description": "",
+                                "sort": 0,
+                                "uri": "form"
+                            },
+                            {
+                                "id": 14,
+                                "pid": 11,
+                                "title": "树形",
+                                "description": "",
+                                "sort": 0,
+                                "uri": "tree"
+                            },
+                            {
+                                "id": 15,
+                                "pid": 11,
+                                "title": "角色管理",
+                                "description": "",
+                                "sort": 0,
+                                "uri": "role"
+                            },
+                            {
+                                "id": 16,
+                                "pid": 11,
+                                "title": "用户管理",
+                                "description": "",
+                                "sort": 0,
+                                "uri": "user"
+                            }
+                        ]
+                    }
+                ],
+                tableData: [{
+                    id: '1',
+                    name: '超级管理员',
+                    desc: '拥有至高无上的权利'
+                }, {
+                    id: '2',
+                    name: '系统管理员',
+                    desc: '只对所在栏目具有添加、审核、发布、删除内容的权限'
+                }],
+                currentPage1: 1,
+                input2: '',
+                menu: 15,
+                dialogFormVisible: false,
+                form: {
+                    name: '',
+                    region: '',
+                    date1: '',
+                    date2: '',
+                    delivery: false,
+                    type: [],
+                    resource: '',
+                    desc: ''
+                },
+                checkAll: true,
+                checkedCities: [],
+                cities: ['菜单管理', '角色管理', '用户', '内容', '开发管理'],
+                isIndeterminate: true,
+                role: [
+                    {
+                        "id": 2,
+                        "pid": 1,
+                        "title": "布局",
+                        "description": "",
+                        "sort": 0,
+                        "uri": "/sys/home/index",
+                        "child": [
+                            {
+                                "id": 3,
+                                "pid": 2,
+                                "title": "表格1",
+                                "description": "",
+                                "sort": 0,
+                                "uri": "layout"
+                            },
+                            {
+                                "id": 4,
+                                "pid": 2,
+                                "title": "表格2",
+                                "description": "",
+                                "sort": 0,
+                                "uri": "table2"
+                            },
+                            {
+                                "id": 5,
+                                "pid": 2,
+                                "title": "表格3",
+                                "description": "",
+                                "sort": 0,
+                                "uri": "table3"
+                            },
+                            {
+                                "id": 6,
+                                "pid": 2,
+                                "title": "表格4",
+                                "description": "",
+                                "sort": 0,
+                                "uri": "table4"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 11,
+                        "pid": 10,
+                        "title": "组件",
+                        "description": "",
+                        "sort": 0,
+                        "uri": "",
+                        "child": [
+                            {
+                                "id": 12,
+                                "pid": 11,
+                                "title": "表单",
+                                "description": "",
+                                "sort": 0,
+                                "uri": "form"
+                            },
+                            {
+                                "id": 14,
+                                "pid": 11,
+                                "title": "树形",
+                                "description": "",
+                                "sort": 0,
+                                "uri": "tree"
+                            },
+                            {
+                                "id": 15,
+                                "pid": 11,
+                                "title": "角色管理",
+                                "description": "",
+                                "sort": 0,
+                                "uri": "role"
+                            },
+                            {
+                                "id": 16,
+                                "pid": 11,
+                                "title": "用户管理",
+                                "description": "",
+                                "sort": 0,
+                                "uri": "user"
+                            }
+                        ]
+                    }
+                ],
+                data2: [{
+                    id: 1,
+                    label: '系统',
+                    children: [{
+                        id: 4,
+                        label: '管理',
+                        children: [{
+                            id: 9,
+                            label: '用户管理'
+                        }, {
+                            id: 10,
+                            label: '内容管理'
+                        }]
+                    }]
+                }, {
+                    id: 2,
+                    label: '社区',
+                    children: [{
+                        id: 5,
+                        label: '老人审核',
+                        children: [{
+                            id: 9,
+                            label: '用户管理'
+                        }, {
+                            id: 10,
+                            label: '内容管理'
+                        }]
+                    }]
+                }, {
+                    id: 3,
+                    label: '首页',
+                    children: [{
+                        id: 7,
+                        label: '首页'
+                    }, {
+                        id: 8,
+                        label: '工作台'
+                    }]
+                }],
+                defaultProps: {
+                    children: 'children',
+                    label: 'label'
+                }
+            };
+        },
+        methods: {
+            go: function (val) {
+                location.href = '/sys/index/' + val + '.html';
+            },
+            item: function () {
+                console.log('sss')
+            },
+            handleClick: function (ret) {
+                console.log(ret);
+            },
+            handleSizeChange: function (val) {
+                console.log('每页' + val + '');
+            },
+            handleCurrentChange: function (val) {
+                console.log('当前页: ' + val);
+            },
+            handleIconClick: function (ev) {
+                console.log(ev);
+
+            },
+            handleCheckAllChange: function (event) {
+//                this.checkedCities = event.target.checked ? this.cities : [];
+//                this.isIndeterminate = false;
+            },
+            handleCheckedCitiesChange: function (value) {
+                console.log($$.m.checkedCities);
+                var checkedCount = value.length;
+                this.checkAll = checkedCount === this.cities.length;
+                this.isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length;
+            }
+        }
+    };
+</script>

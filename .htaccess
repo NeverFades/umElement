@@ -9,4 +9,6 @@
   RewriteCond %{REQUEST_FILENAME} !-f
 #  RewriteRule ^(.*)$ /index.php/$1 [QSA,PT,L]
   RewriteRule ^(.*)$ /rd/$1 [QSA,PT,L]
+
+Header set Access-Control-Allow-Origin "*"
 </IfModule>
